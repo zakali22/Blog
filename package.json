@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "scrollmagic": "^2.0.7",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-scrollmagic": "^1.1.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -19,8 +21,11 @@
     "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "drawsvg": "^1.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "gsap": "^2.1.3",
+    "jquery": "^3.4.1",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
