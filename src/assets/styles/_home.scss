@@ -7,7 +7,7 @@
         font-family: 'Stylish', sans-serif;
         align-self: flex-start;
         margin: 2rem 5rem;
-        border: 2px solid black;
+        // border: 2px solid black;
         padding: 0 1rem;
         span {
             color: $light-coral;
@@ -54,10 +54,11 @@
         }
         &--right {
             flex: 1;
-            background: url('../images/joe.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            background: $light-grey1;
+            // background: url('../images/joe.jpg');
+            // background-repeat: no-repeat;
+            // background-size: cover;
+            // background-position: center;
         }
 
 
