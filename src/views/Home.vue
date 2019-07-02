@@ -62,27 +62,45 @@
                 </g>
                 </svg>
             </h1>
+            <span class="scroll">
+              <p>Scroll</p>
+              <i>&darr;</i>
+            </span>
       </div>
       <div class="home__header--right"></div>
     </header>
+    <div class="home__social">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+    </div>
   </div>
 </template>
 
 <script>
 import {TimelineLite, Power1} from 'gsap'
+import $ from 'jquery'
 export default {
   data(){
     return {
     }
   },
   mounted(){
+    $(window).on('beforeunload', () => {
+      $(window).scrollTop(0)
+    })
     // const drawsvg = window.DrawSVGPlugin;
+    const tlLoad = new TimelineLite();
+    tlLoad
+    .from('.home__header', 1, {scale: 1.5, transformOrigin: "center", zIndex: 100})
+    .from('.home__header--left', .6, {width: "100%"}, "-=.4")
+
     const tlH1 = new TimelineLite();
     tlH1
       .to(".home__header--left__heading", .7, {x: "170%", ease: Power1.easeInOut})
       .to(".home__header--left", .6, {width: "100%", ease: Power1.easeInOut}, "-=.6")
-      .staggerTo(".home__header--left__description--container p", .6, {autoAlpha: 1, y: 0}, 0.2, "-=.2")
-      .to(".date-since", .6, {autoAlpha: 1, y: 0}, "-=.5")
+      .to(".scroll", .4, {y:50, autoAlpha: 0}, "-=.4")
+      .staggerTo(".home__header--left__description--container p", .5, {autoAlpha: 1, y: 0}, 0.2, "-=.2")
+      .from(".date-since", .6, {autoAlpha: 0, x: -50}, "-=.5")
 
     const controller = new ScrollMagic.Controller();
     const scene = new ScrollMagic.Scene({

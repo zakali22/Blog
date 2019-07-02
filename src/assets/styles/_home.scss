@@ -28,6 +28,7 @@
         position: relative;
         margin: 0 5rem;
         overflow: hidden;
+        top: 10px;
 
         // .overlay {
         //     height: 100%;
@@ -41,6 +42,36 @@
             width: 50%;
             background: $light-coral;
             display: flex;
+            .scroll {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                bottom: 45px;
+                left: 48%;
+                font-size: 1.6rem;
+                color: white;
+                font-weight: 100;
+                p {
+                    transform: rotate(90deg);
+                    font-family: 'Stylish', sans-serif;
+                }
+                i {
+                    position: relative;
+                    right: 1px;
+                    animation: 1s infinite alternate upDown;
+                }
+
+                @keyframes upDown {
+                    0% {
+                        top: 2rem;
+                    } 
+                    100% {
+                        top: 3rem;
+                    }
+                }
+
+            }
             &__description {
                 width: 100%;
                 &--container {
@@ -52,15 +83,13 @@
                     margin-bottom: 25px;
                     display: flex;
                     align-items: center;
-                    opacity: 0;
-                    transform: translateY(20px);
+                    opacity: 1;
                     p {
                         margin-left: 1rem;
                         font-family: 'Lato', sans-serif;
                         font-size: 1.5rem;
                         font-weight: 200;
                         font-style: italic;
-                        
                     }
                 }
                 p {
@@ -111,7 +140,18 @@
             // background-size: cover;
             // background-position: center;
         }
-
-
+    }
+    &__social {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        i {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            font-weight: 200;
+        }
     }
 }
