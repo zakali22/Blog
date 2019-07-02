@@ -5,8 +5,8 @@ import store from './store'
 
 import './assets/styles/index.scss'
 
-import VueScrollmagic from 'vue-scrollmagic'
-Vue.use(VueScrollmagic)
+import KsVueScrollmagic from 'ks-vue-scrollmagic'
+Vue.use(KsVueScrollmagic)
 
 Vue.config.productionTip = false
 

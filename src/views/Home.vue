@@ -1,16 +1,34 @@
 <template>
   <div class="home">
-    <h1 class="home__logo">wokine<span>.</span></h1>
+    <!-- <div class="home__trigger"></div> -->
+    <nav class="home__nav">
+      <h1 class="home__nav--logo">Wokine<span>.</span></h1>
+    </nav>
+    
     <header class="home__header" ref="mainHeader">
       <!-- <div class="overlay"></div> -->
       <div class="home__header--left" ref="sideHeader">
+            <div class="home__header--left__description">
+              <div class="home__header--left__description--container">
+                <span class="date-since">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="33" height="7" viewBox="0 0 73.94 14.19">
+                    <polyline points="2.83 2.83 11.36 11.36 19.9 2.83 28.43 11.36 36.97 2.83 45.5 11.36 54.04 2.83 62.58 11.36 71.11 2.83" style="stroke-dashoffset: 2e-05; stroke-dasharray: none;"></polyline>
+                  </svg>
+                  <p>Since 2004.</p>
+                </span>
+                <p>Wokine is a global digital agency</p>
+                <p>and a startup studio, providing innovative,</p>
+                <p>modern and aesthetic solutions.</p>
+              </div>
+            </div>
             <h1 class="home__header--left__heading">
               <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="1242.000000pt" height="969.000000pt" viewBox="0 0 1242.000000 969.000000" preserveAspectRatio="xMidYMid meet">
                 <metadata>Created by potrace 1.15, written by Peter Selinger 2001-2017</metadata>
-                <g transform="translate(0.000000,969.000000) scale(0.100000,-0.100000)" fill="#1c1b20" stroke="none">
+                <g transform="translate(0.000000,969.000000) scale(0.100000,-0.100000)">
+                 
                   <path id="helloH" d="M20 7420 l0 -2250 525 0 525 0 0 970 0 970 540 0 540 0 0 -970 0
                     -970 525 0 525 0 0 2250 0 2250 -525 0 -525 0 0 -745 0 -745 -540 0 -540 0 0
-                    745 0 745 -525 0 -525 0 0 -2250z">
+                    745 0 745 -525 0 -525 0 0 -2250z" >
                   </path>
                   <path  d="M4545 9679 c-418 -3 -786 -7 -817 -8 l-58 -1 0 -2247 c0 -1237 4
                     -2253 8 -2259 5 -8 394 -9 1457 -1 798 5 1450 10 1451 11 1 0 -1 212 -4 470
@@ -36,10 +54,10 @@
                     l-7 466 -866 -5 c-476 -2 -890 -6 -918 -9 l-53 -4 0 1780 0 1779 -530 0 -530
                     0 0 -2250z">
                   </path>
-                  <path d="M11540 1454 c-36 -7 -108 -34 -160 -60 -163 -80 -302 -239 -359 -409
+                  <path id="dot" d="M11540 1454 c-36 -7 -108 -34 -160 -60 -163 -80 -302 -239 -359 -409
                     -83 -251 -22 -535 157 -727 293 -315 815 -298 1084 36 108 135 158 278 158
                     456 0 208 -65 365 -210 511 -73 73 -101 94 -180 132 -52 25 -127 52 -167 61
-                    -87 19 -234 19 -323 0z" fill="#ff5851">
+                    -87 19 -234 19 -323 0z" >
                   </path>
                 </g>
                 </svg>
@@ -51,45 +69,28 @@
 </template>
 
 <script>
-import {TimelineLite} from 'gsap'
+import {TimelineLite, Power1} from 'gsap'
 export default {
   data(){
     return {
     }
   },
   mounted(){
-    const drawsvg = window.DrawSVGPlugin;
-    console.log(drawsvg)
-
+    // const drawsvg = window.DrawSVGPlugin;
     const tlH1 = new TimelineLite();
-    tlH1.to('#helloH', 1, {drawsvg: "0"})
+    tlH1
+      .to(".home__header--left__heading", .7, {x: "170%", ease: Power1.easeInOut})
+      .to(".home__header--left", .6, {width: "100%", ease: Power1.easeInOut}, "-=.6")
+      .staggerTo(".home__header--left__description--container p", .6, {autoAlpha: 1, y: 0}, 0.2, "-=.2")
+      .to(".date-since", .6, {autoAlpha: 1, y: 0}, "-=.5")
 
+    const controller = new ScrollMagic.Controller();
+    const scene = new ScrollMagic.Scene({
+      triggerElement: '.home__trigger',
+      triggerHook: 0, 
+      offset: 1
+    }).setPin('.home__header').addTo(controller).setTween(tlH1).addIndicators()
 
-
-
-    // const tlHeader = new TimelineLite()
-
-    // const scene = this.$scrollmagic.scene({
-    //   triggerElement: '.home__header',
-    //   triggerHook: 'onCenter'
-    // })
-    // this.$scrollmagic.addScene(
-    //   scene
-    //     .setTween(
-    //       tlHeader.to('.home__header--left', .5, {width: "100%"})
-    //     )
-    //     .addIndicators()
-    // )
-
-
-  // console.log(ScrollMagic)
-  //   // Controller 
-  //   const controller = new ScrollMagic.Controller()
-  //   const scene = new ScrollMagic.Scene({
-  //     triggerElement: '.home__header--left'
-  //   })
-  //     .setTween(tlHeader)
-  //     .addTo(controller)
   }
 }
 </script>
