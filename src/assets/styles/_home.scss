@@ -1,8 +1,25 @@
 .home {
     display: flex;
     flex-direction: column;
-    height: 1000vh;
     position: relative;
+    margin-bottom: 5rem;
+    &__trigger2 {
+        position: absolute;
+        top: 100px;
+        height: 1px;
+        width: 100%;
+    }
+    &__padding {
+        width: 100%;
+        height: 5rem;
+        background: white;
+        position: fixed;
+        bottom: 0;
+        z-index: 1000;
+    }
+    &__slide {
+        margin: 0 5rem;
+    }
     &__nav {
         position: fixed;
         z-index: 1000;
@@ -12,7 +29,7 @@
             font-size: 3rem;
             font-family: 'Stylish', sans-serif;
             align-self: flex-start;
-            margin: 2rem 5rem;
+            margin: 1rem 5rem;
             text-transform: lowercase;
             // border: 2px solid black;
             padding: 0 1rem;
@@ -23,10 +40,9 @@
     }
     &__header {
         background: $light-grey1;
-        height: 95vh;
+        height: 100vh;
         display: flex;
         position: relative;
-        margin: 0 5rem;
         overflow: hidden;
         top: 10px;
 
@@ -47,7 +63,7 @@
                 flex-direction: column;
                 align-items: center;
                 position: absolute;
-                bottom: 45px;
+                bottom: 12%;
                 left: 48%;
                 font-size: 1.6rem;
                 color: white;
@@ -153,5 +169,11 @@
             font-size: 1.8rem;
             font-weight: 200;
         }
+    }
+    &__content {
+        height: 100vh;
+        z-index: 100;
+        background: red;
+        overflow: hidden;
     }
 }
