@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <div class="home__trigger"></div>
+    <div class="home__trigger2"></div>
+    <div class="home__trigger3"></div>
     <nav class="home__nav">
       <h1 class="home__nav--logo">Wokine<span><sup>.</sup></span></h1>
     </nav>
@@ -69,7 +71,8 @@
             </div>
             <div class="home__header--right"></div>
         </header>
-      <main class="home__content slide">
+      <main class="home__content slides">
+        <img src="../assets/images/videoimage.jpg"/>
       </main>
     </div>
     <div class="home__padding"></div>
@@ -86,7 +89,7 @@ import $ from 'jquery'
 export default {
   data(){
     return {
-      controller: new ScrollMagic.Controller()
+      
     }
   },
   mounted(){
@@ -100,40 +103,69 @@ export default {
     .from('.home__header', 1, {scale: 1.5, transformOrigin: "center", zIndex: 100})
     .from('.home__header--left', .6, {width: "100%"}, "-=.4");
     this.runHeaderAnimation()
-    this.allowScrollDown();
+    // this.allowScrollDown();
   },
   methods: {
     allowScrollDown(){
-      const tlH2 = new TimelineLite();
-      tlH2
-        .to('.home__content', .6, {y: "-100%"})
-
-      const scene2 = new ScrollMagic.Scene({
-        triggerElement: '.slide--hook', 
-        triggerHook: 0
-      }).setPin('.home__content').addTo(this.controller).setTween(tlH2).addIndicators();
     },
     runHeaderAnimation(){
         // Animate the header
-        const tlH1 = new TimelineLite({
-          onComplete: function(){
-            console.log(vm);
+        const controller = new ScrollMagic.Controller();
+        // const tlH1 = new TimelineLite({
+        //   onComplete: function(){
+        //       const tlH2 = new TimelineLite();
+        //       console.log(tlH2)
+        //       tlH2
+        //         .to('.home__header', .6, {y: "-100%"})
+              
+
+        //       const scene2 = new ScrollMagic.Scene({
+        //         triggerElement: '.home__trigger2', 
+        //         triggerHook: 0,
+        //         duration: "500%"
+        //       }).setPin('.home__header').addTo(controller).setTween(tlH2).addIndicators();
+        //   }
+        // });
+        console.log(TweenMax)
+        let tl1 = new TimelineLite({paused: true});
+        let tl2 = new TimelineLite()
+        tl1
+          .add([
+            TweenMax.to(".home__header--left__heading", .7, {x: "170%", ease: Power1.easeInOut}),
+            TweenMax.to(".home__header--left", .7, {width: "100%", ease: Power1.easeInOut}, "-=.6"),
+            TweenMax.to(".scroll", .4, {y:50, autoAlpha: 0}, "-=.4"),
+            TweenMax.staggerTo(".home__header--left__description--container p", .5, {autoAlpha: 1, y: 0}, 0.2, "-=.2")
+            ])
+        const scene1 = new ScrollMagic.Scene({
+          triggerElement: '.home__trigger2',
+          duration: 500,
+          offset: -3
+        }).setPin('.home__header').addTo(controller).addIndicators().on('enter', function(){
+          if(tl1.paused){
+            tl1.play();
+          }
+        }).on('leave', function(event){
+          if(event.scrollDirection === "REVERSE"){
+            tl1.reverse()
+          } else if(event.scrollDirection === "FORWARD") {
+            // tl2
+            //   .from(".home__content", {y: "-50%"})
+            
+            // const scene2 = new ScrollMagic.Scene({
+            //   triggerElement: '.home__trigger3',
+            //   triggerHook: 1,
+            //   duration: "100%"
+            // }).setTween(tl2).addTo(controller)
+            console.log("moving forward")
+
+              const scene2 = new ScrollMagic.Scene({
+                triggerElement: '.home__content',
+              }).setPin('.home__content').addTo(controller)
           }
         });
-        tlH1
-          .to(".home__header--left__heading", .7, {x: "170%", ease: Power1.easeInOut})
-          .to(".home__header--left", .6, {width: "100%", ease: Power1.easeInOut}, "-=.6")
-          .to(".scroll", .4, {y:50, autoAlpha: 0}, "-=.4")
-          .staggerTo(".home__header--left__description--container p", .5, {autoAlpha: 1, y: 0}, 0.2, "-=.2")
-          .from(".date-since", .6, {autoAlpha: 0, x: -50}, "-=.5")
-
 
         
-        const scene1 = new ScrollMagic.Scene({
-          triggerElement: '.home__trigger',
-          triggerHook: 0, 
-          offset: 1
-        }).setPin('.home__header').addTo(this.controller).setTween(tlH1).addIndicators();
+
         
     }
   }
